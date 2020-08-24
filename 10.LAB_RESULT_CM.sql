@@ -575,9 +575,6 @@ GROUP BY PATID, SPECIMEN_SOURCE, SPECIMEN_DATE, SPECIMEN_TIME) a
 LEFT JOIN OMOP.dbo.person b
 ON a.PATID = b.person_source_value
 
-/*Fill the specimen_concept_id value.*/
 
-
-/*Fill the anatomic_site_concept_id value.*/
 
 
