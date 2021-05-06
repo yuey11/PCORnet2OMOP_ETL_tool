@@ -49,7 +49,7 @@ ON a.PATID = b.person_source_value
 LEFT JOIN OMOP.dbo.provider c
 ON a.PROVIDERID = c.provider_source_value
 LEFT JOIN OMOP.dbo.ENCOUNTERID_visit_occurrence_id_mapping d
-ON a.ENCOUNTERID = d.ENCOUNTERID
+ON a.ENCOUNTERID = d.ENCOUNTERID;
 
 
 /*Fill the procedure_source_concept_id value.*/
