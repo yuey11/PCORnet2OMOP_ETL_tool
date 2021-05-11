@@ -108,7 +108,7 @@ SELECT
 	0
 
 FROM PCORnet.dbo.DEATH a  
-LEFT JOIN PCORnet.dbo.DEATH_CAUSE b
+JOIN PCORnet.dbo.DEATH_CAUSE b
 ON a.PATID = b.PATID
 LEFT JOIN OMOP.dbo.person c
 ON a.PATID = c.person_source_value;
