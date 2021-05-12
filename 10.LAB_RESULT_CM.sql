@@ -545,7 +545,7 @@ FROM OMOP.dbo.measurement;
 /*Input specimen related data into OMOP.specimen table.*/ 
 INSERT INTO OMOP.dbo.specimen(
 	specimen_id, person_id, specimen_concept_id, specimen_type_concept_id, specimen_date,
-	specimen_datetime, anatomic_site_concept_id, disease_status_concept_id, specimen_source_value)
+	specimen_datetime, anatomic_site_concept_id, disease_status_concept_id, specimen_source_id, specimen_source_value)
 SELECT 
 	ROW_NUMBER() OVER (order by (select 1))+ (SELECT COALESCE(MAX(specimen_id),0) FROM OMOP.dbo.specimen),
 
@@ -565,11 +565,13 @@ SELECT
 	0,
 
 	0,
+	
+	LAB_RESULT_CM_ID,
 
 	SPECIMEN_SOURCE
 
 FROM 
-(SELECT PATID, SPECIMEN_SOURCE, SPECIMEN_DATE, SPECIMEN_TIME
+(SELECT LAB_RESULT_CM_ID, PATID, SPECIMEN_SOURCE, SPECIMEN_DATE, SPECIMEN_TIME
 FROM PCORnet.dbo.LAB_RESULT_CM
 GROUP BY PATID, SPECIMEN_SOURCE, SPECIMEN_DATE, SPECIMEN_TIME) a  
 LEFT JOIN OMOP.dbo.person b
