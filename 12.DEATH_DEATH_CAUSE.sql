@@ -119,7 +119,7 @@ ON a.PATID = c.person_source_value;
 UPDATE OMOP.dbo.condition_occurrence 
 SET condition_source_concept_id = b.concept_id
 FROM OMOP.dbo.condition_occurrence a, OMOP.dbo.concept b
-WHERE a.condition_source_value = b.concept_code and b.vocabulary_id like '%ICD%'
+WHERE a.condition_source_value = b.concept_code and b.vocabulary_id IN ('ICD9CM','ICD10CM')
 and a.condition_source_concept_id = 0;
 
 
