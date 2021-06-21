@@ -59,14 +59,14 @@ ON a.PATID = b.person_source_value
 LEFT JOIN OMOP.dbo.provider c
 ON a.PROVIDERID = c.provider_source_value
 LEFT JOIN OMOP.dbo.ENCOUNTERID_visit_occurrence_id_mapping d
-ON a.ENCOUNTERID = d.ENCOUNTERID
+ON a.ENCOUNTERID = d.ENCOUNTERID;
 
 
 /*Fill the condition_source_concept_id value.*/
-UPDATE OMOP.dbo.condition_occurrence 
+UPDATE [COVID19_OMOP].dbo.condition_occurrence 
 SET condition_source_concept_id = b.concept_id
-FROM OMOP.dbo.condition_occurrence a, OMOP.dbo.concept b
-WHERE a.condition_source_value = b.concept_code and (b.vocabulary_id like '%ICD%' or b.vocabulary_id in ('SNOMED'));
+FROM [COVID19_OMOP].dbo.condition_occurrence a, [COVID19_OMOP].dbo.concept b
+WHERE a.condition_source_value = b.concept_code and (b.vocabulary_id in ('SNOMED', 'ICD10CM', 'ICD9CM'));
 
 
 /*Fill the condition_concept_id value.*/
