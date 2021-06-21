@@ -63,9 +63,9 @@ ON a.ENCOUNTERID = d.ENCOUNTERID;
 
 
 /*Fill the condition_source_concept_id value.*/
-UPDATE [COVID19_OMOP].dbo.condition_occurrence 
+UPDATE OMOP.dbo.condition_occurrence 
 SET condition_source_concept_id = b.concept_id
-FROM [COVID19_OMOP].dbo.condition_occurrence a, [COVID19_OMOP].dbo.concept b
+FROM OMOP.dbo.condition_occurrence a, OMOP.dbo.concept b
 WHERE a.condition_source_value = b.concept_code and (b.vocabulary_id in ('SNOMED', 'ICD10CM', 'ICD9CM'));
 
 
